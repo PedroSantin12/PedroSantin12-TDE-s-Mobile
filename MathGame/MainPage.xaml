@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MathGame.MainPage"
+             BackgroundColor="#F3F6FB"
+             Title="Desafio Matemático">
+    <ScrollView>
+        <Grid Padding="20,24" HorizontalOptions="Center" MaximumWidthRequest="720">
+            <VerticalStackLayout Spacing="18">
+                <Image Source="mathlogo.png" HeightRequest="105" Aspect="AspectFit"
+                       SemanticProperties.Description="Logotipo do Desafio Matemático" />
+                <Label Text="Desafio Matemático" FontSize="34" FontAttributes="Bold"
+                       TextColor="#173B57" HorizontalTextAlignment="Center" />
+                <Label Text="Treine as quatro operações e tente bater sua melhor pontuação!"
+                       FontSize="16" TextColor="#587083" HorizontalTextAlignment="Center" />
+
+                <Border x:Name="SetupCard" BackgroundColor="White" Stroke="#DDE6EF"
+                        StrokeShape="RoundRectangle 20" Padding="22">
+                    <VerticalStackLayout Spacing="16">
+                        <Label Text="Configure a partida" FontSize="23" FontAttributes="Bold" TextColor="#173B57" />
+                        <Label Text="Dificuldade" FontAttributes="Bold" TextColor="#38566D" />
+                        <Picker x:Name="DifficultyPicker" Title="Escolha a dificuldade" SelectedIndex="0">
+                            <Picker.Items>
+                                <x:String>Fácil (1 a 10)</x:String>
+                                <x:String>Médio (1 a 50)</x:String>
+                                <x:String>Difícil (1 a 100)</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        <Label Text="Operações" FontAttributes="Bold" TextColor="#38566D" />
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="10">
+                            <HorizontalStackLayout Grid.Row="0" Grid.Column="0">
+                                <CheckBox x:Name="AdditionCheckBox" IsChecked="True" />
+                                <Label Text="Adição" VerticalTextAlignment="Center" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Row="0" Grid.Column="1">
+                                <CheckBox x:Name="SubtractionCheckBox" IsChecked="True" />
+                                <Label Text="Subtração" VerticalTextAlignment="Center" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Row="1" Grid.Column="0">
+                                <CheckBox x:Name="MultiplicationCheckBox" IsChecked="True" />
+                                <Label Text="Multiplicação" VerticalTextAlignment="Center" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Row="1" Grid.Column="1">
+                                <CheckBox x:Name="DivisionCheckBox" IsChecked="True" />
+                                <Label Text="Divisão" VerticalTextAlignment="Center" />
+                            </HorizontalStackLayout>
+                        </Grid>
+                        <Button Text="Começar partida" Clicked="StartGame_Clicked"
+                                BackgroundColor="#1D7A8C" FontSize="17" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border x:Name="GameCard" IsVisible="False" BackgroundColor="White" Stroke="#DDE6EF"
+                        StrokeShape="RoundRectangle 20" Padding="22">
+                    <VerticalStackLayout Spacing="16">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label x:Name="QuestionProgressLabel" Text="Questão 1 de 10"
+                                   FontAttributes="Bold" TextColor="#38566D" />
+                            <Label x:Name="ScoreLabel" Grid.Column="1" Text="Pontos: 0"
+                                   FontAttributes="Bold" TextColor="#1D7A8C" />
+                        </Grid>
+                        <ProgressBar x:Name="QuestionProgressBar" Progress="0.1" ProgressColor="#1D7A8C" />
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                            <Label Text="⏱" FontSize="22" VerticalTextAlignment="Center" />
+                            <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                <Label x:Name="TimerLabel" Text="30 segundos" FontAttributes="Bold" TextColor="#27845A" />
+                                <ProgressBar x:Name="TimerProgressBar" Progress="1" ProgressColor="#27845A" />
+                            </VerticalStackLayout>
+                        </Grid>
+                        <Label x:Name="QuestionLabel" Text="5 + 5 = ?" FontSize="38" FontAttributes="Bold"
+                               TextColor="#173B57" HorizontalTextAlignment="Center" Margin="0,12" />
+                        <Entry x:Name="AnswerEntry" Placeholder="Digite apenas números" Keyboard="Numeric"
+                               FontSize="22" HorizontalTextAlignment="Center"
+                               TextChanged="AnswerEntry_TextChanged" Completed="AnswerEntry_Completed" />
+                        <Button x:Name="CheckAnswerButton" Text="Conferir resposta" Clicked="CheckAnswer_Clicked"
+                                BackgroundColor="#1D7A8C" FontSize="17" FontAttributes="Bold" />
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12" HorizontalOptions="Center">
+                            <Image x:Name="FeedbackImage" Source="question.png" HeightRequest="54" WidthRequest="54" />
+                            <Label x:Name="FeedbackLabel" Grid.Column="1" Text="Resolva o desafio!"
+                                   FontSize="17" TextColor="#587083" VerticalTextAlignment="Center" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border x:Name="ResultCard" IsVisible="False" BackgroundColor="White" Stroke="#DDE6EF"
+                        StrokeShape="RoundRectangle 20" Padding="22">
+                    <VerticalStackLayout Spacing="14">
+                        <Image x:Name="ResultImage" Source="win.png" HeightRequest="120" Aspect="AspectFit" />
+                        <Label Text="Partida concluída!" FontSize="27" FontAttributes="Bold"
+                               TextColor="#173B57" HorizontalTextAlignment="Center" />
+                        <Label x:Name="ClassificationLabel" Text="Excelente!" FontSize="22" FontAttributes="Bold"
+                               TextColor="#1D7A8C" HorizontalTextAlignment="Center" />
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" RowSpacing="12" ColumnSpacing="12">
+                            <Border Grid.Row="0" Grid.Column="0" BackgroundColor="#EDF8F3" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="12">
+                                <VerticalStackLayout>
+                                    <Label Text="Pontuação" TextColor="#587083" HorizontalTextAlignment="Center" />
+                                    <Label x:Name="FinalScoreLabel" Text="0" FontSize="24" FontAttributes="Bold" TextColor="#27845A" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border Grid.Row="0" Grid.Column="1" BackgroundColor="#EDF4FA" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="12">
+                                <VerticalStackLayout>
+                                    <Label Text="Acertos" TextColor="#587083" HorizontalTextAlignment="Center" />
+                                    <Label x:Name="CorrectAnswersLabel" Text="0/10" FontSize="24" FontAttributes="Bold" TextColor="#1D7A8C" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="0" BackgroundColor="#FFF1F1" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="12">
+                                <VerticalStackLayout>
+                                    <Label Text="Erros" TextColor="#587083" HorizontalTextAlignment="Center" />
+                                    <Label x:Name="WrongAnswersLabel" Text="0" FontSize="24" FontAttributes="Bold" TextColor="#C64B4B" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border Grid.Row="1" Grid.Column="1" BackgroundColor="#FFF8E8" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="12">
+                                <VerticalStackLayout>
+                                    <Label Text="Tempo médio" TextColor="#587083" HorizontalTextAlignment="Center" />
+                                    <Label x:Name="AverageTimeLabel" Text="0s" FontSize="24" FontAttributes="Bold" TextColor="#A86E00" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </Grid>
+                        <Button Text="Jogar novamente" Clicked="PlayAgain_Clicked"
+                                BackgroundColor="#1D7A8C" FontSize="17" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

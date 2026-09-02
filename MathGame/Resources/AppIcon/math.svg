@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" id="math">
+  <rect width="40" height="40" x="4" y="4" fill="#333" rx="1"></rect>
+  <path fill="#4d4d4d" d="M35.99 4a56.82 56.82 0 0 1-17.4 40H5a1.003 1.003 0 0 1-1-1V5a1.003 1.003 0 0 1 1-1Z"></path>
+  <path fill="#ffad1d" d="M8 8h15v15H8z"></path>
+  <path fill="#ffc239" d="M19.91 8a21.964 21.964 0 0 1-7.94 15H8V8Z"></path>
+  <path fill="#f2f2f2" d="M15.5 20.5a1 1 0 0 1-1-1v-8a1 1 0 0 1 2 0v8a1 1 0 0 1-1 1Z"></path>
+  <path fill="#f2f2f2" d="M19.5 16.5h-8a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Z"></path>
+  <path fill="#06c458" d="M8 25h15v15H8z"></path>
+  <path fill="#34d143" d="M19.91 25a21.964 21.964 0 0 1-7.94 15H8V25Z"></path>
+  <path fill="#4279bd" d="M36.91 25a21.964 21.964 0 0 1-7.94 15H25V25Z"></path>
+  <path fill="#f2f2f2" d="M12.671 36.329a1 1 0 0 1-.707-1.707l5.658-5.658a1 1 0 1 1 1.414 1.414l-5.658 5.658a.996.996 0 0 1-.707.293Z"></path>
+  <path fill="#f2f2f2" d="M18.329 36.329a.996.996 0 0 1-.707-.293l-5.658-5.658a1 1 0 1 1 1.414-1.414l5.658 5.658a1 1 0 0 1-.707 1.707Z"></path>
+  <path fill="#ee4042" d="M25 8h15v15H25z"></path>
+  <path fill="#ff5543" d="M36.91 8a21.964 21.964 0 0 1-7.94 15H25V8Z"></path>
+  <path fill="#f2f2f2" d="M36.5 16.5h-8a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Z"></path>
+  <path fill="#3364aa" d="M25 25h15v15H25z"></path>
+  <path fill="#4279bd" d="M36.91 25a21.964 21.964 0 0 1-7.94 15H25V25Z"></path>
+  <circle cx="32.5" cy="28.5" r="1" fill="#f2f2f2"></circle>
+  <circle cx="32.5" cy="36.5" r="1" fill="#f2f2f2"></circle>
+  <path fill="#f2f2f2" d="M36.5 33.5h-8a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Z"></path>
+</svg>
