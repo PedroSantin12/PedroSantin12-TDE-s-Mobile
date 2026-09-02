@@ -14,4 +14,4 @@ Aplicativo desenvolvido em .NET MAUI para o Exercício Prático 02 da disciplina
 
 ## Executar
 
-Abra `MathGame.slnx` no Visual Studio 2026 com a carga de trabalho .NET MAUI instalada. Selecione Windows ou um emulador Android e execute o projeto `MathGame`.
+Abra `MathGame/MathGame.slnx` no Visual Studio 2026 com a carga de trabalho .NET MAUI instalada. Selecione Windows ou um emulador Android e execute o projeto `MathGame`.
